@@ -47,14 +47,21 @@ public class MainActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                signIn(editEmail1.getText().toString(), editPassword1.getText().toString());
+                String email = editEmail1.getText().toString();
+                String password = editPassword1.getText().toString();
+                if (email.isEmpty() || password.isEmpty()) {
+                    Toast.makeText(MainActivity.this, "Authentication failed.",
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    signIn(editEmail1.getText().toString(), editPassword1.getText().toString());
+                }
             }
         });
         signUpTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Register.class);
-                startActivity(intent);
+                Intent intent1 = new Intent(MainActivity.this, Register.class);
+                startActivity(intent1);
             }
         });
 
@@ -69,26 +76,20 @@ public class MainActivity extends AppCompatActivity {
         authentication.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
+                    public void onComplete(Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
+                            // Sign in success
                             Log.d(TAG, "signInWithEmail:success");
-                            FirebaseUser user = authentication.getCurrentUser();
-                            updateUI(user);
+                            //Let customer buy
+                            Intent intent2 = new Intent(MainActivity.this, Shop.class);
+                            startActivity(intent2);
                         } else {
                             // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithEmail:failure", task.getException());
+                            Log.w(TAG, "signInWithEmail:failure");
                             Toast.makeText(MainActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
-                            updateUI(null);
                         }
                     }
                 });
-        // [END sign_in_with_email]
     }
-    private void updateUI(FirebaseUser user) {
-
-    }
-
-
 }

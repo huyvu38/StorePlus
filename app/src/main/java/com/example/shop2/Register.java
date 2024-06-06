@@ -33,11 +33,7 @@ public class Register extends AppCompatActivity {
     private static final String TAG = "EmailPassword";
 
     EditText editEmail2, editPassword2;
-    //editAge, editPhone, editHomeAddress;
-    //RadioButton radioButtonMale, radioButtonFemale, radioButtonOther;
     Button registerButton;
-    //FirebaseDatabase database;
-    //DatabaseReference reference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,71 +42,22 @@ public class Register extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         //Anh xa
-        //database = FirebaseDatabase.getInstance();
-        //reference = database.getReference();
+        mAuth = FirebaseAuth.getInstance();
         editEmail2 = findViewById(R.id.editEmail2);
         editPassword2 = findViewById(R.id.editPassword2);
-        //editAge = findViewById(R.id.editAge);
-        //editPhone = findViewById(R.id.editPhone);
-        //editHomeAddress = findViewById(R.id.editHomeAddress);
-        //radioButtonMale = findViewById(R.id.radioButtonMale);
-        //radioButtonFemale = findViewById(R.id.radioButtonFemale);
-        //radioButtonOther = findViewById(R.id.radioButtonOther);
         registerButton = findViewById(R.id.registerButton); // Initialize registerButton
 
-        // Register Button Click Listener
-        /*
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HashMap<String, Object> information = new HashMap<>();
                 String email = editEmail2.getText().toString();
                 String password = editPassword2.getText().toString();
-                int age = Integer.parseInt(editAge.getText().toString());
-                String gender = "";
-                if (radioButtonMale.isChecked()) {
-                    gender = "Male";
+                if (email.isEmpty() || password.isEmpty()) {
+                    Toast.makeText(Register.this, "Create failed.",
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    createAccount(editEmail2.getText().toString(), editPassword2.getText().toString());
                 }
-                if (radioButtonFemale.isChecked()) {
-                    gender = "Female";
-                }
-                if (radioButtonOther.isChecked()) {
-                    gender = "Other";
-                }
-                int phone = Integer.parseInt(editPhone.getText().toString());
-                String homeAddress = editHomeAddress.getText().toString();
-                //After create account successfully
-                information.put("Email", email);
-                information.put("Password", password);
-                information.put("Age", age);
-                information.put("Gender", gender);
-                information.put("Phone", phone);
-                information.put("Address", homeAddress);
-                reference.child("User")
-                        .setValue(information)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-
-                    public void onSuccess(Void unused) {
-                        Toast.makeText(Register.this,
-                                "Create account successfully",
-                                Toast.LENGTH_SHORT).show();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(Register.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-        });
-
-         */
-        registerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                createAccount(editEmail2.getText().toString(), editPassword2.getText().toString());
-                finish();
             }
         });
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -120,40 +67,20 @@ public class Register extends AppCompatActivity {
         });
     }
     private void createAccount(String email, String password) {
-        // [START create_user_with_email]
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
+                            // Sign in success
                             Log.d(TAG, "createUserWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
+                            Toast.makeText(Register.this, "Registration successful", Toast.LENGTH_SHORT).show();
+                            finish();
                         } else {
-                            // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(Register.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                            updateUI(null);
+                            Toast.makeText(Register.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
-        // [END create_user_with_email]
-    }
-    /*
-    @Override
-    public void onStart() {
-        super.onStart();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser != null) {
-            reload();
-        }
-    }
-
-     */
-    private void reload() { }
-    private void updateUI(FirebaseUser user) {
-
     }
 }
