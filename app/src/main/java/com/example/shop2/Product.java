@@ -5,11 +5,11 @@ public class Product {
     private int image;
     private double price;
     private int numSell;
-    public Product(String name, int image, double price, int numSell) {
+    public Product(String name, int image, double price) {
         this.name = name;
         this.image = image;
         this.price = price;
-        this.numSell = numSell;
+        this.numSell = 0;
     }
 
     public String getName() {

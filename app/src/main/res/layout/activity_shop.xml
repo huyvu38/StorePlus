@@ -7,4 +7,42 @@
     android:layout_height="match_parent"
     tools:context=".Shop">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/app_name">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <SearchView
+                android:id="@+id/editSearchView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:iconifiedByDefault="false"
+                android:queryHint="Search for products"
+                tools:ignore="Suspicious0dp">
+
+            </SearchView>
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/advertisement" />
+
+            <GridView
+                android:layout_width="match_parent"
+                android:layout_height="446dp"
+                android:layout_weight="1"
+                android:id="@+id/gridView"
+                android:numColumns="2"/>
+
+        </LinearLayout>
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

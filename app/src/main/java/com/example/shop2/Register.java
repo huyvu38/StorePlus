@@ -53,7 +53,7 @@ public class Register extends AppCompatActivity {
                 String email = editEmail2.getText().toString();
                 String password = editPassword2.getText().toString();
                 if (email.isEmpty() || password.isEmpty()) {
-                    Toast.makeText(Register.this, "Create failed.",
+                    Toast.makeText(Register.this, "Create account failed",
                             Toast.LENGTH_SHORT).show();
                 } else {
                     createAccount(editEmail2.getText().toString(), editPassword2.getText().toString());
