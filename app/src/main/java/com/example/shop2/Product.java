@@ -5,7 +5,8 @@ public class Product {
     private int image;
     private double price;
     private int numSell;
-    public Product(String name, int image, double price) {
+    private String information;
+    public Product(String name, int image, double price, String information) {
         this.name = name;
         this.image = image;
         this.price = price;
@@ -42,5 +43,9 @@ public class Product {
 
     public void setNumSell(int numSell) {
         this.numSell = numSell;
+    }
+
+    public void setInformation(String information) {
+        this.information = information;
     }
 }
