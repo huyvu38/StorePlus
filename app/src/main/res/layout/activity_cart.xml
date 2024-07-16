@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CartActivity">
+
+    <ScrollView
+        android:layout_width="422dp"
+        android:layout_height="677dp"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="My Cart"
+                android:textAlignment="center"
+                android:textSize="34sp"
+                android:textStyle="bold" />
+
+            <GridView
+                android:id="@+id/gridCart"
+                android:layout_width="match_parent"
+                android:layout_height="359dp">
+
+            </GridView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="196dp"
+                    android:layout_height="match_parent"
+                    android:text="Estimated Price :"
+                    android:textAlignment="viewStart"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="218dp"
+                    android:layout_height="44dp"
+                    android:layout_weight="1"
+                    android:text="0 USD" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="190dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:text="Tax :"
+                    android:textAlignment="viewStart"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="217dp"
+                    android:layout_height="44dp"
+                    android:layout_weight="1"
+                    android:text="0 USD" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="198dp"
+                    android:layout_height="match_parent"
+                    android:text="Delivery Cost :"
+                    android:textAlignment="textStart"
+                    android:textAllCaps="false"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="218dp"
+                    android:layout_height="48dp"
+                    android:text="5.00 USD" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="188dp"
+                    android:layout_height="35dp"
+                    android:layout_weight="1"
+                    android:text="Total Price :"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="213dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="0 USD" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/editTextTextPostalAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Enter your address"
+                android:inputType="textPostalAddress"
+                android:minHeight="48dp" />
+
+            <Button
+                android:id="@+id/checkOutButton"
+                android:layout_width="408dp"
+                android:layout_height="51dp"
+                android:text="Check out" />
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,29 +1,21 @@
 package com.example.shop2;
-
 import android.app.Activity;
-import android.content.Context;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class ProductArrayAdapter extends ArrayAdapter<Product> {
     private Activity context;
     private int textViewResourceId;
     private ArrayList<Product> listProduct;
-    private HashMap<Integer, Integer> quantities; // Store quantities
-
+    static HashMap<Integer, Integer> quantities; // Store quantities
 
     public ProductArrayAdapter(Activity context, int textViewResourceId, ArrayList<Product> listProduct) {
         super(context, textViewResourceId, listProduct);

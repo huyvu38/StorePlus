@@ -1,23 +1,16 @@
 package com.example.shop2;
-
-import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -45,12 +38,10 @@ public class Shop extends AppCompatActivity {
                              "Sale 20% for students when buying backpack during B2S day"};
 
     GridView gridView;
-    ArrayList<Product> listProduct;
+    static ArrayList<Product> listProduct;
     ProductArrayAdapter arrayAdapter;
 
-    EditText quantity;
-    ImageView addView;
-    ImageView removeView;
+    ImageView cartImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,20 +53,38 @@ public class Shop extends AppCompatActivity {
         //Gan bien
         listProduct = new ArrayList<>();
         for (int i = 0; i < name.length; i++) {
-            Product product = new Product(name[i],image[i], price[i], information[i]);
+            Product product = new Product(name[i], image[i], price[i], information[i]);
             listProduct.add(product);
-            //mDatabase.child("")
-            mDatabase.child("Product" + String.valueOf(i+1)).setValue(product);
+            mDatabase.child("Product" + (i + 1)).setValue(product);
         }
         arrayAdapter = new ProductArrayAdapter(Shop.this, R.layout.activity_layout_item, listProduct);
         gridView = findViewById(R.id.gridView);
         gridView.setAdapter(arrayAdapter);
-
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(Shop.this, DetailActivity.class);
+                intent.putExtra("image", image[position]);
+                intent.putExtra("price", price[position]);
+                intent.putExtra("information", information[position]);
+                intent.putExtra("name", name[position]);
+                startActivity(intent); // Launch the DetailActivity
+            }
+        });
+        cartImage = findViewById(R.id.cartImage);
+        cartImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Shop.this, CartActivity.class);
+                startActivity(intent);
+            }
+        });
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
     }
 }

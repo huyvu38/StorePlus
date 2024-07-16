@@ -17,17 +17,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <SearchView
-                android:id="@+id/editSearchView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:iconifiedByDefault="false"
-                android:queryHint="Search for products"
-                tools:ignore="Suspicious0dp">
-
-            </SearchView>
-
             <ImageView
                 android:id="@+id/imageView3"
                 android:layout_width="match_parent"
@@ -36,11 +25,30 @@
                 app:srcCompat="@drawable/advertisement" />
 
             <GridView
-                android:layout_width="match_parent"
-                android:layout_height="446dp"
-                android:layout_weight="1"
                 android:id="@+id/gridView"
-                android:numColumns="2"/>
+                android:layout_width="match_parent"
+                android:layout_height="497dp"
+                android:layout_weight="1"
+                android:numColumns="2">
+
+            </GridView>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/cartImage"
+                    android:layout_width="121dp"
+                    android:layout_height="56dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0"
+                    app:srcCompat="@drawable/basket" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
     </ScrollView>
